@@ -1,18 +1,18 @@
-import { toast } from "sonner";
-import { Ellipsis, CircleX } from "lucide-react";
-import { BN } from "@coral-xyz/anchor";
-import { PublicKey, VersionedTransaction } from "@solana/web3.js";
-import { getAssociatedTokenAddress, TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { useMutation } from "@tanstack/react-query";
+import { toast } from 'sonner';
+import { Ellipsis, CircleX } from 'lucide-react';
+import { BN } from '@coral-xyz/anchor';
+import { PublicKey, VersionedTransaction } from '@solana/web3.js';
+import { getAssociatedTokenAddress, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useMutation } from '@tanstack/react-query';
 
-import { useStakingProgram } from "./useStakingProgram";
+import { useStakingProgram } from './useStakingProgram';
 
 import {
   STEP_MINT,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
-} from "@/constants/programPubkey";
+} from '@/constants/programPubkey';
 
 export const useUnstake = () => {
   const { sendTransaction, publicKey } = useWallet();
@@ -20,7 +20,7 @@ export const useUnstake = () => {
   const program = useStakingProgram();
 
   return useMutation({
-    mutationKey: ["unstake", publicKey],
+    mutationKey: ['unstake', publicKey],
     mutationFn: async (unstakeAmount: number) => {
       const tokenTo = await getAssociatedTokenAddress(STEP_MINT, publicKey!);
 
@@ -57,15 +57,15 @@ export const useUnstake = () => {
 
       const res = await sendTransaction(versionedTx, connection);
 
-      console.log("Res:", res);
+      console.log('Res:', res);
     },
     onMutate: () => {
-      toast("Approve transactions from your wallet", {
+      toast('Approve transactions from your wallet', {
         icon: <Ellipsis color="blue" />,
       });
     },
-    onError: (error) => {
-      toast("Error staking STEP", { icon: <CircleX color="red" /> });
+    onError: () => {
+      toast('Error staking STEP', { icon: <CircleX color="red" /> });
     },
   });
 };

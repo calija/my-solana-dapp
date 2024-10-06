@@ -1,11 +1,11 @@
-import { Copy, Unplug } from "lucide-react";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { Copy, Unplug } from 'lucide-react';
+import { useWallet } from '@solana/wallet-adapter-react';
 
-import { useDisconnect } from "@/hooks";
-import { formatPublicKey } from "@/lib/utils";
+import { useDisconnect } from '@/hooks';
+import { formatPublicKey } from '@/lib/utils';
 
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { WalletIcon } from "../WalletIcon";
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { WalletIcon } from '../WalletIcon';
 
 export const WalletButton = () => {
   const { wallet } = useWallet();
@@ -32,7 +32,7 @@ export const WalletButton = () => {
             <span>{formatPublicKey(publicKey!)}</span>
           </div>
           <div className="flex items-center gap-2">
-            <button className="text-gray1" onClick={() => console.log("test")}>
+            <button className="text-gray1" onClick={() => console.log('test')}>
               <Copy size={16} />
             </button>
             <button className="text-gray1" onClick={() => mutate()}>

@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useWallet } from "@solana/wallet-adapter-react";
-import { toast } from "sonner";
+import { useWallet } from '@solana/wallet-adapter-react';
+import { toast } from 'sonner';
 
 import {
   NotConnected,
@@ -9,9 +9,9 @@ import {
   ConnectButton,
   WalletButton,
   WalletIcon,
-} from "@/components";
-import { useEffect } from "react";
-import { formatPublicKey } from "@/lib/utils";
+} from '@/components';
+import { useEffect } from 'react';
+import { formatPublicKey } from '@/lib/utils';
 
 export default () => {
   const { connected, wallet } = useWallet();

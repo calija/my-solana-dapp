@@ -1,9 +1,9 @@
-import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
+import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from 'lucide-react';
 
-import { StakeCardTabButton } from "../StakeCardTabButton";
-import { useStepPerXStep } from "@/hooks";
+import { StakeCardTabButton } from '../StakeCardTabButton';
+import { useStepPerXStep } from '@/hooks';
 
-export type StakeAction = "stake" | "unstake";
+export type StakeAction = 'stake' | 'unstake';
 type Props = {
   stakeAmount: string;
   onChangeStakeAmount: (amount: string) => void;
@@ -25,16 +25,16 @@ export const StakingCard = ({
     <div>
       <div className="flex">
         <StakeCardTabButton
-          isActive={action === "stake"}
+          isActive={action === 'stake'}
           Icon={<ArrowDownToLine size={16} />}
-          onClick={() => onChangeAction("stake")}
+          onClick={() => onChangeAction('stake')}
         >
           Stake
         </StakeCardTabButton>
         <StakeCardTabButton
-          isActive={action === "unstake"}
+          isActive={action === 'unstake'}
           Icon={<ArrowUpFromLine size={16} />}
-          onClick={() => onChangeAction("unstake")}
+          onClick={() => onChangeAction('unstake')}
         >
           Unstake
         </StakeCardTabButton>
@@ -75,7 +75,7 @@ export const StakingCard = ({
           {/* Gornji input */}
           <div className="flex items-center h-16 p-3 rounded-lg bg-background">
             <span className="text-sm font-bold">
-              {action === "stake" ? "STEP" : "xSTEP"}
+              {action === 'stake' ? 'STEP' : 'xSTEP'}
             </span>
             <div className="flex flex-col items-end w-full">
               <input
@@ -104,7 +104,7 @@ export const StakingCard = ({
           </div>
           <div className="flex items-center justify-between w-full h-16 p-4 px-2.5 border border-[rgba(120,120,120,0.15)] rounded-lg ">
             <span className="text-sm font-bold">
-              {action === "stake" ? "xSTEP" : "STEP"}
+              {action === 'stake' ? 'xSTEP' : 'STEP'}
             </span>
             <span className="text-lg font-bold font-mono">0.00</span>
           </div>

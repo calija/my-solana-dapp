@@ -2,16 +2,16 @@ import {
   STEP_MINT,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
-} from "@/constants/programPubkey";
-import { useQuery } from "@tanstack/react-query";
-import { useStakingProgram } from "./useStakingProgram";
-import { PublicKey } from "@solana/web3.js";
+} from '@/constants/programPubkey';
+import { useQuery } from '@tanstack/react-query';
+import { useStakingProgram } from './useStakingProgram';
+import { PublicKey } from '@solana/web3.js';
 
 export const useStepPerXStep = () => {
   const program = useStakingProgram();
 
   return useQuery({
-    queryKey: ["emitPrice"],
+    queryKey: ['emitPrice'],
     queryFn: async () => {
       const [vaultPubkey] = await PublicKey.findProgramAddress(
         [STEP_MINT.toBuffer()],
@@ -27,7 +27,7 @@ export const useStepPerXStep = () => {
         .simulate();
 
       // const res = await connection.simulateTransaction(tx);
-      console.log("res: ", tx);
+      console.log('res: ', tx);
     },
     // staleTime: 1000 * 60 * 5,
     // refetchInterval: 1000 * 60,

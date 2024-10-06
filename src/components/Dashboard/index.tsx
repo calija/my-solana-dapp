@@ -1,18 +1,18 @@
-import { useMemo, useState } from "react";
-import { ArrowUpDown } from "lucide-react";
+import { useMemo, useState } from 'react';
+import { ArrowUpDown } from 'lucide-react';
 
-import { useStake, useTokens, useUnstake } from "@/hooks";
-import { STEP_MINT, X_STEP_MINT } from "@/constants/programPubkey";
+import { useStake, useTokens, useUnstake } from '@/hooks';
+import { STEP_MINT, X_STEP_MINT } from '@/constants/programPubkey';
 
-import { type StakeAction, StakingCard } from "../StakingCard";
+import { type StakeAction, StakingCard } from '../StakingCard';
 
 export const Dashboard = () => {
   const { data: tokens } = useTokens();
   const { mutate: stake, isPending: isStakePending } = useStake();
   const { mutate: unstake, isPending: isUnstakePending } = useUnstake();
 
-  const [action, setAction] = useState<StakeAction>("stake");
-  const [inputValue, setInputValue] = useState("");
+  const [action, setAction] = useState<StakeAction>('stake');
+  const [inputValue, setInputValue] = useState('');
 
   const stepAmount = useMemo(() => {
     return tokens?.find((i) => i.info.mint === STEP_MINT.toBase58())?.info
@@ -25,14 +25,14 @@ export const Dashboard = () => {
   }, [tokens]);
 
   const maxStakeBalance = useMemo(() => {
-    if (action === "stake") {
+    if (action === 'stake') {
       return stepAmount;
     }
     return xStepAmount;
   }, [action, stepAmount, xStepAmount]);
 
   const maxReceiveBalance = useMemo(() => {
-    if (action === "stake") {
+    if (action === 'stake') {
       return xStepAmount;
     }
     return stepAmount;
@@ -40,21 +40,21 @@ export const Dashboard = () => {
 
   const buttonLabel = useMemo(() => {
     if (isStakePending || isUnstakePending) {
-      return "Approve transactions from your wallet";
+      return 'Approve transactions from your wallet';
     }
     if (+inputValue === 0) {
-      return "Enter an amount";
+      return 'Enter an amount';
     }
     if (maxStakeBalance && +inputValue > +maxStakeBalance) {
-      if (action === "stake") {
-        return "Insufficient STEP balance";
+      if (action === 'stake') {
+        return 'Insufficient STEP balance';
       }
-      return "Insufficient xSTEP balance";
+      return 'Insufficient xSTEP balance';
     }
-    if (action === "stake") {
-      return "Stake";
+    if (action === 'stake') {
+      return 'Stake';
     }
-    return "Unstake";
+    return 'Unstake';
   }, [inputValue, maxStakeBalance, action, isStakePending, isUnstakePending]);
 
   return (
@@ -94,7 +94,7 @@ export const Dashboard = () => {
             +inputValue > +maxStakeBalance
           }
           onClick={() => {
-            if (action === "stake") {
+            if (action === 'stake') {
               stake(+inputValue);
               return;
             }

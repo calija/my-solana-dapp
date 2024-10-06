@@ -1,6 +1,6 @@
-export { NotConnected } from "./NotConnected";
-export { Dashboard } from "./Dashboard";
+export { NotConnected } from './NotConnected';
+export { Dashboard } from './Dashboard';
 
-export { ConnectButton } from "./ConnectButton";
-export { WalletButton } from "./WalletButton";
-export { WalletIcon } from "./WalletIcon";
+export { ConnectButton } from './ConnectButton';
+export { WalletButton } from './WalletButton';
+export { WalletIcon } from './WalletIcon';

@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { FC, ReactNode } from "react";
+import { FC, ReactNode } from 'react';
 import {
   ConnectionProvider,
   WalletProvider,
-} from "@solana/wallet-adapter-react";
-import { WalletModalProvider } from "@solana/wallet-adapter-react-ui";
+} from '@solana/wallet-adapter-react';
+import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
 
-import "@solana/wallet-adapter-react-ui/styles.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import '@solana/wallet-adapter-react-ui/styles.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const endpoint =
-  "https://mainnet.helius-rpc.com/?api-key=b4eabeda-f5fd-4a44-92d3-cefc3f2af6b6";
+  'https://mainnet.helius-rpc.com/?api-key=b4eabeda-f5fd-4a44-92d3-cefc3f2af6b6';
 
 interface WalletContextProviderProps {
   children: ReactNode;

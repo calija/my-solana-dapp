@@ -1,19 +1,19 @@
-import { toast } from "sonner";
-import { Ellipsis, CircleX } from "lucide-react";
-import { BN } from "@coral-xyz/anchor";
-import { PublicKey, VersionedTransaction } from "@solana/web3.js";
-import { getAssociatedTokenAddress, TOKEN_PROGRAM_ID } from "@solana/spl-token";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { useMutation } from "@tanstack/react-query";
+import { toast } from 'sonner';
+import { Ellipsis, CircleX } from 'lucide-react';
+import { BN } from '@coral-xyz/anchor';
+import { PublicKey, VersionedTransaction } from '@solana/web3.js';
+import { getAssociatedTokenAddress, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { useMutation } from '@tanstack/react-query';
 
-import { useStakingProgram } from "./useStakingProgram";
+import { useStakingProgram } from './useStakingProgram';
 
 import {
   STEP_MINT,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
-} from "@/constants/programPubkey";
-import { useTransactionStatus } from "./useTransactionStatus";
+} from '@/constants/programPubkey';
+import { useTransactionStatus } from './useTransactionStatus';
 
 export const useStake = () => {
   const { sendTransaction, publicKey } = useWallet();
@@ -63,7 +63,7 @@ export const useStake = () => {
         const versionedTx = new VersionedTransaction(message);
 
         const signature = await sendTransaction(versionedTx, connection);
-        console.log("signature:", signature);
+        console.log('signature:', signature);
 
         checkStatus(signature);
       } catch (error) {
@@ -71,12 +71,12 @@ export const useStake = () => {
       }
     },
     onMutate: () => {
-      toast("Approve transactions from your wallet", {
+      toast('Approve transactions from your wallet', {
         icon: <Ellipsis color="blue" />,
       });
     },
-    onError: (error) => {
-      toast("Error staking STEP", { icon: <CircleX color="red" /> });
+    onError: () => {
+      toast('Error staking STEP', { icon: <CircleX color="red" /> });
     },
   });
 };

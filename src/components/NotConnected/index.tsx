@@ -1,5 +1,5 @@
-"use client";
-import { useWallet } from "@solana/wallet-adapter-react";
+'use client';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 export const NotConnected = () => {
   const { connecting } = useWallet();
@@ -20,8 +20,8 @@ export const NotConnected = () => {
 
       <span>
         {connecting
-          ? "Connection your wallet..."
-          : "Connect your wallet to begin"}
+          ? 'Connection your wallet...'
+          : 'Connect your wallet to begin'}
       </span>
     </div>
   );

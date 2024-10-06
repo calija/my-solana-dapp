@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useWallet } from "@solana/wallet-adapter-react";
+import { useState } from 'react';
+import { useWallet } from '@solana/wallet-adapter-react';
 
 import {
   Dialog,
@@ -7,7 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
+} from '../ui/dialog';
 
 export const ConnectButton = () => {
   const { wallets, select } = useWallet();
@@ -16,7 +16,7 @@ export const ConnectButton = () => {
 
   const renderWallets = () =>
     wallets
-      .filter((w) => w.readyState === "Installed")
+      .filter((w) => w.readyState === 'Installed')
       ?.map((wallet) => (
         <li key={wallet.adapter.name}>
           <button

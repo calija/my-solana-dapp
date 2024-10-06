@@ -1,6 +1,6 @@
-import { useQuery } from "@tanstack/react-query";
-import { useConnection, useWallet } from "@solana/wallet-adapter-react";
-import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
+import { useQuery } from '@tanstack/react-query';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
+import { TOKEN_PROGRAM_ID } from '@solana/spl-token';
 
 type ParsedToken = {
   info: {
@@ -19,9 +19,9 @@ export const useTokens = () => {
   const { publicKey, connected } = useWallet();
 
   return useQuery({
-    queryKey: [`tokens-${publicKey?.toBase58()}`],
+    queryKey: ['tokens', publicKey],
     queryFn: async () => {
-      if (!publicKey) throw new Error("Public key is required");
+      if (!publicKey) throw new Error('Public key is required');
 
       const tokenAccounts = await connection.getParsedTokenAccountsByOwner(
         publicKey,

@@ -1,445 +1,445 @@
 export type StepStakingIDL = {
-  version: "0.0.0";
-  name: "step_staking";
+  version: '0.0.0';
+  name: 'step_staking';
   instructions: [
     {
-      name: "initialize";
+      name: 'initialize';
       accounts: [
         {
-          name: "tokenMint";
+          name: 'tokenMint';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "tokenVault";
+          name: 'tokenVault';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "initializer";
+          name: 'initializer';
           isMut: true;
           isSigner: true;
         },
         {
-          name: "systemProgram";
+          name: 'systemProgram';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "tokenProgram";
+          name: 'tokenProgram';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "rent";
+          name: 'rent';
           isMut: false;
           isSigner: false;
-        }
+        },
       ];
       args: [
         {
-          name: "nonce";
-          type: "u8";
-        }
+          name: 'nonce';
+          type: 'u8';
+        },
       ];
     },
     {
-      name: "reclaimMintAuthority";
+      name: 'reclaimMintAuthority';
       accounts: [
         {
-          name: "tokenMint";
+          name: 'tokenMint';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "xTokenMint";
+          name: 'xTokenMint';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenVault";
+          name: 'tokenVault';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "authority";
+          name: 'authority';
           isMut: true;
           isSigner: true;
         },
         {
-          name: "tokenProgram";
+          name: 'tokenProgram';
           isMut: false;
           isSigner: false;
-        }
+        },
       ];
       args: [
         {
-          name: "nonce";
-          type: "u8";
-        }
+          name: 'nonce';
+          type: 'u8';
+        },
       ];
     },
     {
-      name: "stake";
+      name: 'stake';
       accounts: [
         {
-          name: "tokenMint";
+          name: 'tokenMint';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "xTokenMint";
+          name: 'xTokenMint';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenFrom";
+          name: 'tokenFrom';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenFromAuthority";
+          name: 'tokenFromAuthority';
           isMut: false;
           isSigner: true;
         },
         {
-          name: "tokenVault";
+          name: 'tokenVault';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "xTokenTo";
+          name: 'xTokenTo';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenProgram";
+          name: 'tokenProgram';
           isMut: false;
           isSigner: false;
-        }
+        },
       ];
       args: [
         {
-          name: "nonce";
-          type: "u8";
+          name: 'nonce';
+          type: 'u8';
         },
         {
-          name: "amount";
-          type: "u64";
-        }
+          name: 'amount';
+          type: 'u64';
+        },
       ];
     },
     {
-      name: "unstake";
+      name: 'unstake';
       accounts: [
         {
-          name: "tokenMint";
+          name: 'tokenMint';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "xTokenMint";
+          name: 'xTokenMint';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "xTokenFrom";
+          name: 'xTokenFrom';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "xTokenFromAuthority";
+          name: 'xTokenFromAuthority';
           isMut: false;
           isSigner: true;
         },
         {
-          name: "tokenVault";
+          name: 'tokenVault';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenTo";
+          name: 'tokenTo';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenProgram";
+          name: 'tokenProgram';
           isMut: false;
           isSigner: false;
-        }
+        },
       ];
       args: [
         {
-          name: "nonce";
-          type: "u8";
+          name: 'nonce';
+          type: 'u8';
         },
         {
-          name: "amount";
-          type: "u64";
-        }
+          name: 'amount';
+          type: 'u64';
+        },
       ];
     },
     {
-      name: "emitPrice";
+      name: 'emitPrice';
       accounts: [
         {
-          name: "tokenMint";
+          name: 'tokenMint';
           isMut: false;
           isSigner: false;
         },
         {
-          name: "xTokenMint";
+          name: 'xTokenMint';
           isMut: true;
           isSigner: false;
         },
         {
-          name: "tokenVault";
+          name: 'tokenVault';
           isMut: true;
           isSigner: false;
-        }
+        },
       ];
       args: [];
-    }
+    },
   ];
   events: [
     {
-      name: "PriceChange";
+      name: 'PriceChange';
       fields: [
         {
-          name: "oldStepPerXstepE9";
-          type: "u64";
+          name: 'oldStepPerXstepE9';
+          type: 'u64';
           index: false;
         },
         {
-          name: "oldStepPerXstep";
-          type: "string";
+          name: 'oldStepPerXstep';
+          type: 'string';
           index: false;
         },
         {
-          name: "newStepPerXstepE9";
-          type: "u64";
+          name: 'newStepPerXstepE9';
+          type: 'u64';
           index: false;
         },
         {
-          name: "newStepPerXstep";
-          type: "string";
+          name: 'newStepPerXstep';
+          type: 'string';
           index: false;
-        }
+        },
       ];
     },
     {
-      name: "Price";
+      name: 'Price';
       fields: [
         {
-          name: "stepPerXstepE9";
-          type: "u64";
+          name: 'stepPerXstepE9';
+          type: 'u64';
           index: false;
         },
         {
-          name: "stepPerXstep";
-          type: "string";
+          name: 'stepPerXstep';
+          type: 'string';
           index: false;
-        }
+        },
       ];
-    }
+    },
   ];
 };
 export const StepStakingJSON: StepStakingIDL = {
-  version: "0.0.0",
-  name: "step_staking",
+  version: '0.0.0',
+  name: 'step_staking',
   instructions: [
     {
-      name: "initialize",
+      name: 'initialize',
       accounts: [
         {
-          name: "tokenMint",
+          name: 'tokenMint',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "tokenVault",
+          name: 'tokenVault',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "initializer",
+          name: 'initializer',
           isMut: true,
           isSigner: true,
         },
         {
-          name: "systemProgram",
+          name: 'systemProgram',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "tokenProgram",
+          name: 'tokenProgram',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "rent",
+          name: 'rent',
           isMut: false,
           isSigner: false,
         },
       ],
       args: [
         {
-          name: "nonce",
-          type: "u8",
+          name: 'nonce',
+          type: 'u8',
         },
       ],
     },
     {
-      name: "reclaimMintAuthority",
+      name: 'reclaimMintAuthority',
       accounts: [
         {
-          name: "tokenMint",
+          name: 'tokenMint',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "xTokenMint",
+          name: 'xTokenMint',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenVault",
+          name: 'tokenVault',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "authority",
+          name: 'authority',
           isMut: true,
           isSigner: true,
         },
         {
-          name: "tokenProgram",
+          name: 'tokenProgram',
           isMut: false,
           isSigner: false,
         },
       ],
       args: [
         {
-          name: "nonce",
-          type: "u8",
+          name: 'nonce',
+          type: 'u8',
         },
       ],
     },
     {
-      name: "stake",
+      name: 'stake',
       accounts: [
         {
-          name: "tokenMint",
+          name: 'tokenMint',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "xTokenMint",
+          name: 'xTokenMint',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenFrom",
+          name: 'tokenFrom',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenFromAuthority",
+          name: 'tokenFromAuthority',
           isMut: false,
           isSigner: true,
         },
         {
-          name: "tokenVault",
+          name: 'tokenVault',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "xTokenTo",
+          name: 'xTokenTo',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenProgram",
+          name: 'tokenProgram',
           isMut: false,
           isSigner: false,
         },
       ],
       args: [
         {
-          name: "nonce",
-          type: "u8",
+          name: 'nonce',
+          type: 'u8',
         },
         {
-          name: "amount",
-          type: "u64",
+          name: 'amount',
+          type: 'u64',
         },
       ],
     },
     {
-      name: "unstake",
+      name: 'unstake',
       accounts: [
         {
-          name: "tokenMint",
+          name: 'tokenMint',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "xTokenMint",
+          name: 'xTokenMint',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "xTokenFrom",
+          name: 'xTokenFrom',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "xTokenFromAuthority",
+          name: 'xTokenFromAuthority',
           isMut: false,
           isSigner: true,
         },
         {
-          name: "tokenVault",
+          name: 'tokenVault',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenTo",
+          name: 'tokenTo',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenProgram",
+          name: 'tokenProgram',
           isMut: false,
           isSigner: false,
         },
       ],
       args: [
         {
-          name: "nonce",
-          type: "u8",
+          name: 'nonce',
+          type: 'u8',
         },
         {
-          name: "amount",
-          type: "u64",
+          name: 'amount',
+          type: 'u64',
         },
       ],
     },
     {
-      name: "emitPrice",
+      name: 'emitPrice',
       accounts: [
         {
-          name: "tokenMint",
+          name: 'tokenMint',
           isMut: false,
           isSigner: false,
         },
         {
-          name: "xTokenMint",
+          name: 'xTokenMint',
           isMut: true,
           isSigner: false,
         },
         {
-          name: "tokenVault",
+          name: 'tokenVault',
           isMut: true,
           isSigner: false,
         },
@@ -449,41 +449,41 @@ export const StepStakingJSON: StepStakingIDL = {
   ],
   events: [
     {
-      name: "PriceChange",
+      name: 'PriceChange',
       fields: [
         {
-          name: "oldStepPerXstepE9",
-          type: "u64",
+          name: 'oldStepPerXstepE9',
+          type: 'u64',
           index: false,
         },
         {
-          name: "oldStepPerXstep",
-          type: "string",
+          name: 'oldStepPerXstep',
+          type: 'string',
           index: false,
         },
         {
-          name: "newStepPerXstepE9",
-          type: "u64",
+          name: 'newStepPerXstepE9',
+          type: 'u64',
           index: false,
         },
         {
-          name: "newStepPerXstep",
-          type: "string",
+          name: 'newStepPerXstep',
+          type: 'string',
           index: false,
         },
       ],
     },
     {
-      name: "Price",
+      name: 'Price',
       fields: [
         {
-          name: "stepPerXstepE9",
-          type: "u64",
+          name: 'stepPerXstepE9',
+          type: 'u64',
           index: false,
         },
         {
-          name: "stepPerXstep",
-          type: "string",
+          name: 'stepPerXstep',
+          type: 'string',
           index: false,
         },
       ],
