@@ -9,8 +9,10 @@ module.exports = {
         gray1: "#B2B2B2",
         gray2: "#787878",
         gray3: "#7D7D7D",
+        gray4: "#434343",
         green1: "#003628",
         green2: "#06D6A0",
+        green3: "#07A87E",
       },
       spacing: {
         sm: "5px",
@@ -36,5 +38,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };

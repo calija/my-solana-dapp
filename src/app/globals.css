@@ -27,4 +27,7 @@ body {
   ::selection {
     @apply bg-green1 text-white;
   }
+  :root {
+    --radius: 0.2rem;
+  }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { FC, ReactNode, useMemo } from "react";
+import { FC, ReactNode } from "react";
 import {
   ConnectionProvider,
   WalletProvider,
@@ -21,12 +21,12 @@ const WalletContextProvider: FC<WalletContextProviderProps> = ({
   children,
 }) => {
   const queryClient = new QueryClient();
-  const wallets = useMemo(() => [], []);
 
   return (
     <QueryClientProvider client={queryClient}>
       <ConnectionProvider endpoint={endpoint}>
-        <WalletProvider wallets={wallets} autoConnect>
+        <WalletProvider wallets={[]} autoConnect>
+          {/* TODO: proveriti da li treba da bude prazan niz */}
           <WalletModalProvider>{children}</WalletModalProvider>
         </WalletProvider>
       </ConnectionProvider>

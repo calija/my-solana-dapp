@@ -1,6 +1,11 @@
+"use client";
+import { useWallet } from "@solana/wallet-adapter-react";
+
 export const NotConnected = () => {
+  const { connecting } = useWallet();
   return (
     <div className="flex flex-col items-center w-full gap-xlg text-xl">
+      {/* TODO: use as React component */}
       <svg
         width="160"
         height="160"
@@ -13,7 +18,11 @@ export const NotConnected = () => {
         <rect x="120" width="40" height="160" rx="2" fill="#118AB2" />
       </svg>
 
-      <span>Connect your wallet to begin</span>
+      <span>
+        {connecting
+          ? "Connection your wallet..."
+          : "Connect your wallet to begin"}
+      </span>
     </div>
   );
 };
