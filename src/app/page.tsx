@@ -1,17 +1,37 @@
 "use client";
 
-// import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 import { useWallet } from "@solana/wallet-adapter-react";
+import { toast } from "sonner";
 
 import {
-  Connected,
   NotConnected,
+  Dashboard,
   ConnectButton,
   WalletButton,
+  WalletIcon,
 } from "@/components";
+import { useEffect } from "react";
+import { formatPublicKey } from "@/lib/utils";
 
-export default function Home() {
-  const { connected } = useWallet();
+export default () => {
+  const { connected, wallet } = useWallet();
+
+  useEffect(() => {
+    if (connected && wallet) {
+      toast(
+        `Connected to ${formatPublicKey(wallet.adapter.publicKey!.toBase58())}`,
+        {
+          icon: (
+            <WalletIcon
+              size="small"
+              name={wallet.adapter.name}
+              src={wallet.adapter.icon}
+            />
+          ),
+        }
+      );
+    }
+  }, [connected, wallet]);
 
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
@@ -24,9 +44,8 @@ export default function Home() {
         </div>
       </header>
       <main className="flex flex-col pt-24 pb-24">
-        {/* <WalletMultiButton /> */}
-        {connected ? <Connected /> : <NotConnected />}
+        {connected ? <Dashboard /> : <NotConnected />}
       </main>
     </div>
   );
-}
+};

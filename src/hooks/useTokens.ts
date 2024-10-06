@@ -30,14 +30,14 @@ export const useTokens = () => {
         }
       );
 
-      console.log("tokenAccounts: ", tokenAccounts.value);
-
       const parsedTokens = tokenAccounts.value.map(
         (i) => i.account.data.parsed
       ) as ParsedToken[];
       return parsedTokens;
     },
     enabled: !!publicKey && connected,
-    staleTime: 60000, // Keširanje podataka na 1 minut
+    staleTime: 1000 * 60 * 5,
+    refetchInterval: 1000 * 60 * 1,
+    refetchIntervalInBackground: true,
   });
 };

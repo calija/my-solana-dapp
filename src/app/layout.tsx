@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Plus_Jakarta_Sans } from "next/font/google";
+import { Toaster } from "sonner";
 import WalletContextProvider from "./wallet-provider";
 import "./globals.css";
 
@@ -53,6 +54,18 @@ const RootLayout = ({
         className={`${plusJakartaSans.variable} ${spaceMono.variable} antialiased`}
       >
         <WalletContextProvider>{children}</WalletContextProvider>
+        <Toaster
+          position="bottom-left"
+          expand
+          toastOptions={{
+            unstyled: true,
+            classNames: {
+              toast: "flex items-center w-96 rounded-xl px-5 py-3 bg-card",
+              title: "font-extrabold pr-4",
+              icon: "flex items-center justify-center size-10",
+            },
+          }}
+        />
       </body>
     </html>
   );

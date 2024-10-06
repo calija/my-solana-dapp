@@ -10,9 +10,11 @@ module.exports = {
         gray2: "#787878",
         gray3: "#7D7D7D",
         gray4: "#434343",
+        gray5: "#3D3D3D",
         green1: "#003628",
         green2: "#06D6A0",
         green3: "#07A87E",
+        orange: "#D94C00",
       },
       spacing: {
         sm: "5px",

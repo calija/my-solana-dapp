@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useWallet } from "@solana/wallet-adapter-react";
+
 import {
   Dialog,
   DialogContent,
@@ -9,7 +10,7 @@ import {
 } from "../ui/dialog";
 
 export const ConnectButton = () => {
-  const { wallets, select, connect, wallet } = useWallet();
+  const { wallets, select } = useWallet();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,14 +21,8 @@ export const ConnectButton = () => {
         <li key={wallet.adapter.name}>
           <button
             onClick={async () => {
-              try {
-                setIsOpen(false);
-                select(wallet.adapter.name);
-                const res = await connect();
-                console.log("res: ", res);
-              } catch (error) {
-                console.error("Error: ", error);
-              }
+              setIsOpen(false);
+              select(wallet.adapter.name);
             }}
             className="flex w-full h-10 items-center gap-2 px-4 border border-gray4 hover:border-green3 hover:text-green3 rounded-sm"
           >
