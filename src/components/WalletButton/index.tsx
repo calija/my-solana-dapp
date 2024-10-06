@@ -17,17 +17,16 @@ export const WalletButton = () => {
     <Popover>
       <PopoverTrigger asChild>
         <button className="flex h-8 items-center px-2.5 gap-2.5 rounded-lg bg-card border border-card hover:border-green2 text-sm text-green2">
-          <WalletIcon name={wallet?.adapter.name} src={wallet?.adapter.icon} />
+          <WalletIcon name={wallet?.adapter.name} src={wallet!.adapter.icon} />
           <span>{formatPublicKey(publicKey!)}</span>
         </button>
       </PopoverTrigger>
       <PopoverContent>
         <div className="flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <img
-              src={wallet?.adapter.icon}
-              alt={`${wallet?.adapter.name} icon`}
-              className="w-[20px] h-[20px]"
+            <WalletIcon
+              src={wallet!.adapter.icon}
+              name={wallet?.adapter.name}
             />
             <span>{formatPublicKey(publicKey!)}</span>
           </div>

@@ -8,6 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '../ui/dialog';
+import { WalletIcon } from '../WalletIcon';
 
 export const ConnectButton = () => {
   const { wallets, select } = useWallet();
@@ -26,11 +27,7 @@ export const ConnectButton = () => {
             }}
             className="flex w-full h-10 items-center gap-2 px-4 border border-gray4 hover:border-green3 hover:text-green3 rounded-sm"
           >
-            <img
-              src={wallet.adapter.icon}
-              alt={`${wallet.adapter.name} icon`}
-              className="w-[20px] h-[20px]"
-            />
+            <WalletIcon src={wallet.adapter.icon} name={wallet.adapter.name} />
             <span>{wallet.adapter.name}</span>
           </button>
         </li>

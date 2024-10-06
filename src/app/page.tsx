@@ -13,7 +13,7 @@ import {
 import { useEffect } from 'react';
 import { formatPublicKey } from '@/lib/utils';
 
-export default () => {
+const Main = () => {
   const { connected, wallet } = useWallet();
 
   useEffect(() => {
@@ -49,3 +49,5 @@ export default () => {
     </div>
   );
 };
+
+export default Main;
