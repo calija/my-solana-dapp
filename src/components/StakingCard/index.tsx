@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from "lucide-react";
 
 import { StakeCardTabButton } from "../StakeCardTabButton";
+import { useStepPerXStep } from "@/hooks";
 
 export type StakeAction = "stake" | "unstake";
 type Props = {
@@ -19,39 +20,7 @@ export const StakingCard = ({
   maxStakeBalance,
   maxReceiveBalance,
 }: Props) => {
-  // const test = async () => {
-  //   const [vaultPubkey] = await PublicKey.findProgramAddress(
-  //     [STEP_MINT.toBuffer()],
-  //     X_STEP_PROGRAM_ID
-  //   );
-
-  //   /* const simulationResult = await program.simulate.emitPrice({
-  //     accounts: {
-  //       tokenMint: STEP_MINT,
-  //       xTokenMint: X_STEP_MINT,
-  //       tokenVault: vaultPubkey,
-  //     },
-  //   });
-
-  //   console.log("Rezultat simulacije:", simulationResult.events[0]);
-  //   return; */
-
-  //   const simulationResultV2 = await program.methods
-  //     .emitPrice()
-  //     .accounts({
-  //       tokenMint: STEP_MINT,
-  //       xTokenMint: X_STEP_MINT,
-  //       tokenVault: vaultPubkey,
-  //     })
-  //     .simulate();
-
-  //   console.log("simulationResultV2: ", simulationResultV2);
-  // };
-
-  /* useEffect(() => {
-    test();
-  }, []); */
-
+  useStepPerXStep();
   return (
     <div>
       <div className="flex">

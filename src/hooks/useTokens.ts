@@ -19,7 +19,7 @@ export const useTokens = () => {
   const { publicKey, connected } = useWallet();
 
   return useQuery({
-    queryKey: ["tokens", publicKey],
+    queryKey: [`tokens-${publicKey?.toBase58()}`],
     queryFn: async () => {
       if (!publicKey) throw new Error("Public key is required");
 

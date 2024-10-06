@@ -13,14 +13,17 @@ import {
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
 } from "@/constants/programPubkey";
+import { useTransactionStatus } from "./useTransactionStatus";
 
 export const useStake = () => {
   const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
   const program = useStakingProgram();
 
+  const { checkStatus } = useTransactionStatus();
+
   return useMutation({
-    mutationKey: ["stakeStep", publicKey],
+    mutationKey: [`stakeStep-${publicKey?.toBase58()}`],
     mutationFn: async (stakeAmount: number) => {
       try {
         const tokenFrom = await getAssociatedTokenAddress(
@@ -59,8 +62,10 @@ export const useStake = () => {
         const message = tx.compileMessage();
         const versionedTx = new VersionedTransaction(message);
 
-        const res = await sendTransaction(versionedTx, connection);
-        console.log("Res:", res);
+        const signature = await sendTransaction(versionedTx, connection);
+        console.log("signature:", signature);
+
+        checkStatus(signature);
       } catch (error) {
         throw error;
       }
