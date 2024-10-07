@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from 'lucide-react';
 
 import { useStepPerXStep, useStepPrice } from '@/hooks';
@@ -6,6 +6,8 @@ import { useStepPerXStep, useStepPrice } from '@/hooks';
 import { StakeCardTabButton } from '../StakingCardTabButton';
 import { StakingAmountButton } from '../StakingAmountButton';
 import { StakingInput } from '../StakingInput';
+
+import StepLogo from '../../../public/stepLogo.svg';
 
 export type StakeAction = 'stake' | 'unstake';
 type Props = {
@@ -40,6 +42,13 @@ export const StakingCard = ({
     }
     setReceiveAmount((+stakeAmount * +data.stepPerXstep).toString());
   }, [stakeAmount, data, action]);
+
+  const getInputLogo = useCallback((action: StakeAction) => {
+    if (action === 'stake') {
+      return <StepLogo width={28} height={28} />;
+    }
+    return <StepLogo width={28} height={28} />;
+  }, []);
 
   const coinPrice = useMemo(() => {
     if (!stepUSDPrice || !stakeAmount) {
@@ -104,7 +113,8 @@ export const StakingCard = ({
             </div>
           </div>
 
-          <div className="flex items-center h-16 p-3 rounded-lg bg-background">
+          <div className="flex items-center h-16 p-3 rounded-lg bg-background gap-2.5">
+            {getInputLogo('stake')}
             <span className="text-sm font-bold">
               {action === 'stake' ? 'STEP' : 'xSTEP'}
             </span>
@@ -131,7 +141,8 @@ export const StakingCard = ({
               <span className="font-mono">{maxReceiveBalance || 0}</span>
             </span>
           </div>
-          <div className="flex items-center justify-between w-full h-16 p-4 px-2.5 border border-[rgba(120,120,120,0.15)] rounded-lg ">
+          <div className="flex items-center justify-between gap-2.5 h-16 p-4 px-2.5 border border-[rgba(120,120,120,0.15)] rounded-lg ">
+            {getInputLogo('unstake')}
             <span className="text-sm font-bold">
               {action === 'stake' ? 'xSTEP' : 'STEP'}
             </span>
