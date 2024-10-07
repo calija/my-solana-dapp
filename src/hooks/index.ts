@@ -1,3 +1,4 @@
+export { useStepPrice } from './useStepPrice';
 export { useStepPerXStep } from './useStepPerXStep';
 export { useBalance } from './useBalance';
 export { useTokens } from './useTokens';

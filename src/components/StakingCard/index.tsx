@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from 'lucide-react';
 
-import { useStepPerXStep } from '@/hooks';
+import { useStepPerXStep, useStepPrice } from '@/hooks';
 
 import { StakeCardTabButton } from '../StakingCardTabButton';
 import { StakingAmountButton } from '../StakingAmountButton';
@@ -25,6 +25,7 @@ export const StakingCard = ({
   maxReceiveBalance,
 }: Props) => {
   const { data } = useStepPerXStep();
+  const { data: stepUSDPrice } = useStepPrice();
 
   const [receiveAmount, setReceiveAmount] = useState('');
 
@@ -39,6 +40,21 @@ export const StakingCard = ({
     }
     setReceiveAmount((+stakeAmount * +data.stepPerXstep).toString());
   }, [stakeAmount, data, action]);
+
+  const coinPrice = useMemo(() => {
+    if (!stepUSDPrice || !stakeAmount) {
+      return undefined;
+    }
+    let price;
+    if (action === 'stake') {
+      price = +stakeAmount * stepUSDPrice;
+    }
+    if (action === 'unstake' && data) {
+      price = +stakeAmount * +data.stepPerXstep * stepUSDPrice;
+    }
+
+    return price?.toFixed(2);
+  }, [stepUSDPrice, stakeAmount, action, data]);
 
   return (
     <div>
@@ -98,6 +114,9 @@ export const StakingCard = ({
                 value={stakeAmount}
                 onChange={onChangeStakeAmount}
               />
+              {coinPrice && (
+                <span className="text-xs text-gray3 font-mono">{`$${coinPrice}`}</span>
+              )}
             </div>
           </div>
         </div>
