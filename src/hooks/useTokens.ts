@@ -36,8 +36,8 @@ export const useTokens = () => {
       return parsedTokens;
     },
     enabled: !!publicKey && connected,
-    staleTime: 1000 * 60 * 5,
-    refetchInterval: 1000 * 60 * 1,
+    staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+    refetchInterval: 1000 * 60 * 1, // Refetch every 1 minute
     refetchIntervalInBackground: true,
   });
 };

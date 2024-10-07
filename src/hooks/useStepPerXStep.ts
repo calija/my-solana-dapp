@@ -4,11 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useStakingProgram } from './useStakingProgram';
 
-import {
-  STEP_MINT,
-  X_STEP_MINT,
-  X_STEP_PROGRAM_ID,
-} from '@/constants/programPubkey';
+import { STEP_MINT, X_STEP_MINT, X_STEP_PROGRAM_ID } from '@/lib/constants';
 
 export const useStepPerXStep = () => {
   const program = useStakingProgram();
@@ -37,5 +33,6 @@ export const useStepPerXStep = () => {
     },
     staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
     refetchInterval: 1000 * 60, // Refetch every 1 minute
+    refetchIntervalInBackground: true,
   });
 };

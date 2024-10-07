@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from 'lucide-react';
 
 import { useStepPerXStep, useStepPrice } from '@/hooks';
@@ -7,7 +7,8 @@ import { StakeCardTabButton } from '../StakingCardTabButton';
 import { StakingAmountButton } from '../StakingAmountButton';
 import { StakingInput } from '../StakingInput';
 
-import StepLogo from '../../../public/stepLogo.svg';
+import StepLogo from '../../../public/svg/stepLogo.svg';
+import XStepLogo from '../../../public/svg/xStepLogo.svg';
 
 export type StakeAction = 'stake' | 'unstake';
 type Props = {
@@ -43,13 +44,6 @@ export const StakingCard = ({
     setReceiveAmount((+stakeAmount * +data.stepPerXstep).toString());
   }, [stakeAmount, data, action]);
 
-  const getInputLogo = useCallback((action: StakeAction) => {
-    if (action === 'stake') {
-      return <StepLogo width={28} height={28} />;
-    }
-    return <StepLogo width={28} height={28} />;
-  }, []);
-
   const coinPrice = useMemo(() => {
     if (!stepUSDPrice || !stakeAmount) {
       return undefined;
@@ -83,16 +77,16 @@ export const StakingCard = ({
           Unstake
         </StakeCardTabButton>
       </div>
-      <div className="flex flex-col items-center p-5 gap-3 rounded-b-lg rounded-t-none bg-card">
+      <div className="flex flex-col items-center p-5 gap-3 rounded-br-lg rounded-bl-lg rounded-tr-lg bg-card">
         <div className="flex flex-col w-full gap-4">
           <div className="flex justify-between text-sm">
-            <span>You stake</span>
+            <span>{action === 'stake' ? 'You stake' : 'You unstake'}</span>
             <div className="flex items-center text-sm text-gray3 gap-1">
               <span>
                 {`Balance: `}
                 <span className="font-mono">{maxStakeBalance || 0}</span>
               </span>
-              {maxStakeBalance && (
+              {maxStakeBalance ? (
                 <>
                   <StakingAmountButton
                     onClick={() =>
@@ -109,12 +103,16 @@ export const StakingCard = ({
                     MAX
                   </StakingAmountButton>
                 </>
-              )}
+              ) : null}
             </div>
           </div>
 
           <div className="flex items-center h-16 p-3 rounded-lg bg-background gap-2.5">
-            {getInputLogo('stake')}
+            {action === 'stake' ? (
+              <StepLogo width={28} height={28} />
+            ) : (
+              <XStepLogo width={28} height={28} />
+            )}
             <span className="text-sm font-bold">
               {action === 'stake' ? 'STEP' : 'xSTEP'}
             </span>
@@ -142,7 +140,11 @@ export const StakingCard = ({
             </span>
           </div>
           <div className="flex items-center justify-between gap-2.5 h-16 p-4 px-2.5 border border-[rgba(120,120,120,0.15)] rounded-lg ">
-            {getInputLogo('unstake')}
+            {action === 'unstake' ? (
+              <StepLogo width={28} height={28} />
+            ) : (
+              <XStepLogo width={28} height={28} />
+            )}
             <span className="text-sm font-bold">
               {action === 'stake' ? 'xSTEP' : 'STEP'}
             </span>

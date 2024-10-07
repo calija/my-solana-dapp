@@ -13,7 +13,7 @@ import {
   WalletIcon,
 } from '@/components';
 
-import StepLogo from '../../public/stepLogo.svg';
+import StepLogo from '../../public/svg/stepLogo.svg';
 
 const Main = () => {
   const { connected, wallet } = useWallet();

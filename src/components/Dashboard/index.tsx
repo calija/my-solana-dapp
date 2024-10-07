@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { ArrowUpDown } from 'lucide-react';
 
 import { useStake, useTokens, useUnstake } from '@/hooks';
-import { STEP_MINT, X_STEP_MINT } from '@/constants/programPubkey';
+import { STEP_MINT, X_STEP_MINT } from '@/lib/constants';
 
 import { type StakeAction, StakingCard } from '../StakingCard';
 

@@ -14,7 +14,7 @@ import {
   X_STEP_DECIMALS,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
-} from '@/constants/programPubkey';
+} from '@/lib/constants';
 
 export const useUnstake = () => {
   const { sendTransaction, publicKey } = useWallet();

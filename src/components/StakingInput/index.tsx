@@ -1,4 +1,4 @@
-import { STEP_DECIMALS } from '@/constants/programPubkey';
+import { STEP_DECIMALS } from '@/lib/constants';
 import Cleave from 'cleave.js/react';
 import { clsx } from 'clsx';
 

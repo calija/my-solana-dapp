@@ -13,22 +13,22 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 const spaceMono = localFont({
   src: [
     {
-      path: '../fonts/SpaceMono-Regular.ttf',
+      path: '../../public/fonts/SpaceMono-Regular.ttf',
       weight: '400',
       style: 'normal',
     },
     {
-      path: '../fonts/SpaceMono-Bold.ttf',
+      path: '../../public/fonts/SpaceMono-Bold.ttf',
       weight: '700',
       style: 'normal',
     },
     {
-      path: '../fonts/SpaceMono-Italic.ttf',
+      path: '../../public/fonts/SpaceMono-Italic.ttf',
       weight: '400',
       style: 'italic',
     },
     {
-      path: '../fonts/SpaceMono-BoldItalic.ttf',
+      path: '../../public/fonts/SpaceMono-BoldItalic.ttf',
       weight: '700',
       style: 'italic',
     },

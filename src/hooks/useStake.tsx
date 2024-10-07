@@ -13,7 +13,7 @@ import {
   STEP_MINT,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
-} from '@/constants/programPubkey';
+} from '@/lib/constants';
 import { useTransactionStatus } from './useTransactionStatus';
 
 export const useStake = () => {

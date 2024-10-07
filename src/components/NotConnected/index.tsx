@@ -1,6 +1,6 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 
-import DisconnectedLogo from '../../../public/disconnectedLogo.svg';
+import DisconnectedLogo from '../../../public/svg/disconnectedLogo.svg';
 
 export const NotConnected = () => {
   const { connecting } = useWallet();
