@@ -48,7 +48,6 @@ const RootLayout = ({
       >
         <WalletContextProvider>{children}</WalletContextProvider>
         <Toaster
-          expand
           visibleToasts={5}
           position="bottom-left"
           toastOptions={{

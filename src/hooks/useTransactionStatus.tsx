@@ -29,12 +29,10 @@ export const useTransactionStatus = () => {
         return;
       }
       const { signature, action, sendAmount } = txDetails;
-      console.log('Provera status');
       const status = await connection.confirmTransaction(
         signature,
         'confirmed'
       );
-      console.log('===Status: ');
       if (!status.value.err) {
         const toastMessage =
           action === 'stake' ? 'You staked STEP' : 'You unstaked xSTEP';
@@ -49,9 +47,7 @@ export const useTransactionStatus = () => {
           id: toastIdRef.current,
           duration: 5000,
         });
-        console.log('DONE');
       } else {
-        console.error('Transaction error');
         toast('Transaction error', {
           description: undefined,
           dismissible: true,
@@ -68,8 +64,6 @@ export const useTransactionStatus = () => {
       return status;
     },
     enabled: enabled && !!txDetails,
-    refetchInterval: 3000,
-    refetchIntervalInBackground: true,
   });
 
   const checkStatus = (transactionDetails: TransactionDetails) => {

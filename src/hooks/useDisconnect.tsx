@@ -16,7 +16,7 @@ export const useDisconnect = () => {
     },
     onSuccess: () => {
       toast(`Disconnected from ${formatPublicKey(publicKey!)}`, {
-        icon: <Unlink color="orange" />,
+        icon: <Unlink color="#FF5900" />,
       });
     },
   });

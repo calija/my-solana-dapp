@@ -64,11 +64,9 @@ export const useStake = () => {
         const versionedTx = new VersionedTransaction(message);
 
         const signature = await sendTransaction(versionedTx, connection);
-        console.log('signature:', signature);
 
         checkStatus({ signature, sendAmount, action: 'stake' });
       } catch (error) {
-        console.log('Milos Error:', error);
         throw error;
       }
     },
