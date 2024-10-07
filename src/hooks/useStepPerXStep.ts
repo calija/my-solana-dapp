@@ -28,7 +28,7 @@ export const useStepPerXStep = () => {
         },
       });
 
-      let price = res.events[0].data as {
+      const price = res.events[0].data as {
         stepPerXstep: string;
         stepPerXstepE9: BN;
       };

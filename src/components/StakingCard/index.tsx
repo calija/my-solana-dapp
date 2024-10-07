@@ -3,7 +3,7 @@ import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from 'lucide-react';
 
 import { useStepPerXStep } from '@/hooks';
 
-import { StakeCardTabButton } from '../StakeCardTabButton';
+import { StakeCardTabButton } from '../StakingCardTabButton';
 import { StakingAmountButton } from '../StakingAmountButton';
 import { StakingInput } from '../StakingInput';
 
@@ -38,7 +38,7 @@ export const StakingCard = ({
       return;
     }
     setReceiveAmount((+stakeAmount * +data.stepPerXstep).toString());
-  }, [stakeAmount, data]);
+  }, [stakeAmount, data, action]);
 
   return (
     <div>

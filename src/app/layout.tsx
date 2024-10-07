@@ -54,8 +54,7 @@ const RootLayout = ({
           toastOptions={{
             unstyled: true,
             classNames: {
-              toast:
-                'flex items-center w-96 rounded-xl px-5 py-3 bg-card border border-red-500',
+              toast: 'flex items-center w-96 rounded-xl px-5 py-3 bg-card',
               title: 'font-extrabold pr-4',
               description: 'text-sm text-gray1',
               icon: 'flex items-center justify-center size-10',
