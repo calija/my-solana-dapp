@@ -23,7 +23,7 @@ export const useStake = () => {
   const { checkStatus } = useTransactionStatus();
 
   return useMutation({
-    mutationKey: [`stakeStep-${publicKey?.toBase58()}`],
+    mutationKey: [`stakeStep-${publicKey}`],
     mutationFn: async (stakeAmount: number) => {
       try {
         const tokenFrom = await getAssociatedTokenAddress(

@@ -6,7 +6,7 @@ export const useBalance = () => {
   const { publicKey, connected } = useWallet();
 
   return useQuery({
-    queryKey: ['balance', publicKey],
+    queryKey: [`balance-${publicKey}`],
     queryFn: async () => {
       if (!publicKey) throw new Error('Public key is required');
       const balanceLamports = await connection.getBalance(publicKey);

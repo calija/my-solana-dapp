@@ -35,7 +35,7 @@ export const useTransactionStatus = () => {
         console.log('GOTOVO');
 
         queryClient.invalidateQueries({
-          queryKey: [`tokens-${publicKey?.toBase58()}`],
+          queryKey: [`tokens-${publicKey}`],
         });
         setEnabled(false);
         setSignature(undefined);

@@ -8,7 +8,6 @@ const fetchStepPrice = async () => {
     throw new Error('Error while fetching STEP price');
   }
   const data = await response.json();
-  console.log('DATA: ', data);
   return data['step-finance'].usd as number;
 };
 

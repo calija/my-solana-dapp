@@ -20,7 +20,7 @@ export const useUnstake = () => {
   const program = useStakingProgram();
 
   return useMutation({
-    mutationKey: ['unstake', publicKey],
+    mutationKey: [`unstake-${publicKey}`],
     mutationFn: async (unstakeAmount: number) => {
       const tokenTo = await getAssociatedTokenAddress(STEP_MINT, publicKey!);
 

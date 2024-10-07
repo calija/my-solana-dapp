@@ -10,7 +10,7 @@ export const useDisconnect = () => {
 
   const publicKey = wallet?.adapter.publicKey?.toBase58();
   return useMutation({
-    mutationKey: ['disconnect', publicKey],
+    mutationKey: [`disconnect-${publicKey}`],
     mutationFn: async () => {
       return await disconnect();
     },
