@@ -1,11 +1,14 @@
+import { BN } from '@coral-xyz/anchor';
+import { PublicKey } from '@solana/web3.js';
+import { useQuery } from '@tanstack/react-query';
+
+import { useStakingProgram } from './useStakingProgram';
+
 import {
   STEP_MINT,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
 } from '@/constants/programPubkey';
-import { useQuery } from '@tanstack/react-query';
-import { useStakingProgram } from './useStakingProgram';
-import { PublicKey } from '@solana/web3.js';
 
 export const useStepPerXStep = () => {
   const program = useStakingProgram();
@@ -17,19 +20,22 @@ export const useStepPerXStep = () => {
         [STEP_MINT.toBuffer()],
         X_STEP_PROGRAM_ID
       );
-      const tx = await program.methods
-        .emitPrice()
-        .accounts({
+      const res = await program.simulate.emitPrice({
+        accounts: {
           tokenMint: STEP_MINT,
           xTokenMint: X_STEP_MINT,
           tokenVault: vaultPubkey,
-        })
-        .simulate();
+        },
+      });
 
-      // const res = await connection.simulateTransaction(tx);
-      console.log('res: ', tx);
+      let price = res.events[0].data as {
+        stepPerXstep: string;
+        stepPerXstepE9: BN;
+      };
+
+      return price;
     },
-    // staleTime: 1000 * 60 * 5,
-    // refetchInterval: 1000 * 60,
+    staleTime: 1000 * 60 * 5, // Data stays fresh for 5 minutes
+    refetchInterval: 1000 * 60, // Refetch every 1 minute
   });
 };

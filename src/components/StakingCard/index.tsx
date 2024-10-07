@@ -1,7 +1,11 @@
+import { useEffect, useState } from 'react';
 import { ArrowDown, ArrowDownToLine, ArrowUpFromLine } from 'lucide-react';
 
-import { StakeCardTabButton } from '../StakeCardTabButton';
 import { useStepPerXStep } from '@/hooks';
+
+import { StakeCardTabButton } from '../StakeCardTabButton';
+import { StakingAmountButton } from '../StakingAmountButton';
+import { StakingInput } from '../StakingInput';
 
 export type StakeAction = 'stake' | 'unstake';
 type Props = {
@@ -20,7 +24,22 @@ export const StakingCard = ({
   maxStakeBalance,
   maxReceiveBalance,
 }: Props) => {
-  useStepPerXStep();
+  const { data } = useStepPerXStep();
+
+  const [receiveAmount, setReceiveAmount] = useState('');
+
+  useEffect(() => {
+    if (!data || !stakeAmount) {
+      setReceiveAmount('');
+      return;
+    }
+    if (action === 'stake') {
+      setReceiveAmount((+stakeAmount / +data.stepPerXstep).toString());
+      return;
+    }
+    setReceiveAmount((+stakeAmount * +data.stepPerXstep).toString());
+  }, [stakeAmount, data]);
+
   return (
     <div>
       <div className="flex">
@@ -40,9 +59,7 @@ export const StakingCard = ({
         </StakeCardTabButton>
       </div>
       <div className="flex flex-col items-center p-5 gap-3 rounded-b-lg rounded-t-none bg-card">
-        {/* Gornja sekcija */}
         <div className="flex flex-col w-full gap-4">
-          {/* Linija gde su dugmad HALF i MAX */}
           <div className="flex justify-between text-sm">
             <span>You stake</span>
             <div className="flex items-center text-sm text-gray3 gap-1">
@@ -52,40 +69,34 @@ export const StakingCard = ({
               </span>
               {maxStakeBalance && (
                 <>
-                  <button
+                  <StakingAmountButton
                     onClick={() =>
                       onChangeStakeAmount((+maxStakeBalance / 2).toString())
                     }
-                    className="bg-green1 text-green2 text-[10px] font-extrabold rounded-sm px-1 hover:bg-green2 hover:text-black transition-colors duration-300"
                   >
-                    <span>HALF</span>
-                  </button>
-                  <button
+                    HALF
+                  </StakingAmountButton>
+                  <StakingAmountButton
                     onClick={() =>
                       onChangeStakeAmount(maxStakeBalance.toString())
                     }
-                    className="bg-green1 text-green2 text-[10px] font-extrabold rounded-sm px-1 hover:bg-green2 hover:text-black transition-colors duration-300"
                   >
-                    <span>MAX</span>
-                  </button>
+                    MAX
+                  </StakingAmountButton>
                 </>
               )}
             </div>
           </div>
-          {/* Gornji input */}
+
           <div className="flex items-center h-16 p-3 rounded-lg bg-background">
             <span className="text-sm font-bold">
               {action === 'stake' ? 'STEP' : 'xSTEP'}
             </span>
             <div className="flex flex-col items-end w-full">
-              <input
-                min="0"
-                id="input"
-                type="number"
-                value={stakeAmount}
+              <StakingInput
                 placeholder="0.00"
-                onChange={(e) => onChangeStakeAmount(e.target.value)}
-                className="w-full bg-transparent focus:outline-none text-lg font-bold text-right placeholder-gray2 font-mono"
+                value={stakeAmount}
+                onChange={onChangeStakeAmount}
               />
             </div>
           </div>
@@ -93,7 +104,6 @@ export const StakingCard = ({
 
         <ArrowDown size={36} color="rgb(255,187,29)" />
 
-        {/* Donji input */}
         <div className="flex flex-col w-full gap-1">
           <div className="flex justify-between">
             <span className="text-sm">You receive</span>
@@ -106,7 +116,8 @@ export const StakingCard = ({
             <span className="text-sm font-bold">
               {action === 'stake' ? 'xSTEP' : 'STEP'}
             </span>
-            <span className="text-lg font-bold font-mono">0.00</span>
+
+            <StakingInput disabled placeholder="0.00" value={receiveAmount} />
           </div>
         </div>
       </div>

@@ -22,11 +22,7 @@ const Main = () => {
         `Connected to ${formatPublicKey(wallet.adapter.publicKey!.toBase58())}`,
         {
           icon: (
-            <WalletIcon
-              size="small"
-              name={wallet.adapter.name}
-              src={wallet.adapter.icon}
-            />
+            <WalletIcon name={wallet.adapter.name} src={wallet.adapter.icon} />
           ),
         }
       );

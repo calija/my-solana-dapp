@@ -20,6 +20,7 @@
     "@tanstack/react-query": "^5.59.0",
     "autoprefixer": "^10.4.20",
     "class-variance-authority": "^0.7.0",
+    "cleave.js": "^1.6.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.447.0",
     "next": "14.2.14",
@@ -31,6 +32,7 @@
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^5.58.1",
+    "@types/cleave.js": "^1.4.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

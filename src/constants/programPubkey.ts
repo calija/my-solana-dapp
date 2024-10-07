@@ -11,3 +11,6 @@ export const STEP_MINT = new PublicKey(
 export const X_STEP_MINT = new PublicKey(
   'xStpgUCss9piqeFUk2iLVcvJEGhAdJxJQuwLkXP555G'
 );
+
+export const STEP_DECIMALS = 9;
+export const X_STEP_DECIMALS = 9;
