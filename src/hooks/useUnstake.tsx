@@ -7,9 +7,11 @@ import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 import { useMutation } from '@tanstack/react-query';
 
 import { useStakingProgram } from './useStakingProgram';
+import { useTransactionStatus } from './useTransactionStatus';
 
 import {
   STEP_MINT,
+  X_STEP_DECIMALS,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
 } from '@/constants/programPubkey';
@@ -18,10 +20,11 @@ export const useUnstake = () => {
   const { sendTransaction, publicKey } = useWallet();
   const { connection } = useConnection();
   const program = useStakingProgram();
+  const { checkStatus } = useTransactionStatus();
 
   return useMutation({
     mutationKey: [`unstake-${publicKey}`],
-    mutationFn: async (unstakeAmount: number) => {
+    mutationFn: async (sendAmount: number) => {
       const tokenTo = await getAssociatedTokenAddress(STEP_MINT, publicKey!);
 
       const xTokenFrom = await getAssociatedTokenAddress(
@@ -35,7 +38,7 @@ export const useUnstake = () => {
       );
 
       const tx = await program.methods
-        .unstake(vaultBump, new BN(unstakeAmount * 1_000_000_000))
+        .unstake(vaultBump, new BN(sendAmount * 10 ** X_STEP_DECIMALS))
         .accounts({
           tokenMint: STEP_MINT,
           xTokenMint: X_STEP_MINT,
@@ -55,9 +58,8 @@ export const useUnstake = () => {
       const message = tx.compileMessage();
       const versionedTx = new VersionedTransaction(message);
 
-      const res = await sendTransaction(versionedTx, connection);
-
-      console.log('Res:', res);
+      const signature = await sendTransaction(versionedTx, connection);
+      checkStatus({ signature, sendAmount, action: 'unstake' });
     },
     onMutate: () => {
       toast('Approve transactions from your wallet', {

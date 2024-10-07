@@ -9,6 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useStakingProgram } from './useStakingProgram';
 
 import {
+  STEP_DECIMALS,
   STEP_MINT,
   X_STEP_MINT,
   X_STEP_PROGRAM_ID,
@@ -24,7 +25,7 @@ export const useStake = () => {
 
   return useMutation({
     mutationKey: [`stakeStep-${publicKey}`],
-    mutationFn: async (stakeAmount: number) => {
+    mutationFn: async (sendAmount: number) => {
       try {
         const tokenFrom = await getAssociatedTokenAddress(
           STEP_MINT,
@@ -42,7 +43,7 @@ export const useStake = () => {
         );
 
         const tx = await program.methods
-          .stake(vaultBump, new BN(stakeAmount * 1_000_000_000))
+          .stake(vaultBump, new BN(sendAmount * 10 ** STEP_DECIMALS))
           .accounts({
             tokenMint: STEP_MINT,
             xTokenMint: X_STEP_MINT,
@@ -65,8 +66,9 @@ export const useStake = () => {
         const signature = await sendTransaction(versionedTx, connection);
         console.log('signature:', signature);
 
-        checkStatus(signature);
+        checkStatus({ signature, sendAmount, action: 'stake' });
       } catch (error) {
+        console.log('Milos Error:', error);
         throw error;
       }
     },

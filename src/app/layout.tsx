@@ -1,7 +1,7 @@
 import localFont from 'next/font/local';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Toaster } from 'sonner';
-import WalletContextProvider from './wallet-provider';
+import { WalletContextProvider } from '@/providers';
 import './globals.css';
 
 const plusJakartaSans = Plus_Jakarta_Sans({

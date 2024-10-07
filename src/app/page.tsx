@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useWallet } from '@solana/wallet-adapter-react';
 import { toast } from 'sonner';
 
+import { formatPublicKey } from '@/lib/utils';
 import {
   NotConnected,
   Dashboard,
@@ -10,8 +12,8 @@ import {
   WalletButton,
   WalletIcon,
 } from '@/components';
-import { useEffect } from 'react';
-import { formatPublicKey } from '@/lib/utils';
+
+import StepLogo from '../../public/stepLogo.svg';
 
 const Main = () => {
   const { connected, wallet } = useWallet();
@@ -32,8 +34,9 @@ const Main = () => {
   return (
     <div className="flex items-center justify-center min-h-screen font-[family-name:var(--font-geist-sans)]">
       <header className="flex h-[75px] p-5 justify-between items-center w-full fixed top-0">
-        <div>
-          <span>Step</span>
+        <div className="flex items-center gap-2.5 text-xl font-extrabold">
+          <StepLogo width={40} height={40} />
+          Step
         </div>
         <div className="px-2.5">
           {connected ? <WalletButton /> : <ConnectButton />}
