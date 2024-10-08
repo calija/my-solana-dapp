@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Step Finance Staking dApp
+
+This repo is a result of completing a programming assignment for Step.finance by [@calija](https://github.com/calija).
+It features a staking page for Step/xStep, trying to mimic basic features from the actual Step Finance v2 page.
+
+For convenience, the app is also hosted on Vercel at [https://my-solana-dapp.vercel.app](#) 
+(please be aware that the dApp will not be recognized by your wallet).
+
+## Technologies Used
+
+1. **Next.js:** A React framework with server-side rendering and static site generation.
+2. **TypeScript:** Used to ensure type safety and a better developer experience.
+3. **TanStack Query:** A data-fetching and caching library used for managing server state and API calls.
+4. **Tailwind CSS:** A utility-first CSS framework used for styling the app.
+5. **Lucide React:** A React library for implementing icons throughout the project.
+6. **ShadCN UI:** A collection of UI components built on top of Tailwind CSS, used to create consistent design.
+7. **Sonner:** A lightweight toast notification library used for displaying in-app notifications.
 
 ## Getting Started
 
-First, run the development server:
+To run this project locally, follow these steps:
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+   git clone https://github.com/calija/my-solana-dapp
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Navigate to the project directory:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+   cd my-solana-dapp
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+3. Install dependencies:
 
-## Learn More
+```bash
+   npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Create a .env file by copying .env.example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+   cp .env.example .env
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+5. Open the newly created `.env` file and update the `NEXT_RPC_URL` field as follows:
 
-## Deploy on Vercel
+```bash
+   NEXT_RPC_URL=https://mainnet.helius-rpc.com/?api-key=<YOUR-API-KEY>
+```
+Replace <YOUR-API-KEY> with your actual API key.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+6. Run the development server:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+   npm run dev
+```
+
+
+7. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
