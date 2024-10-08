@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useWallet } from '@solana/wallet-adapter-react';
+import { type Wallet, useWallet } from '@solana/wallet-adapter-react';
 
 import {
   Dialog,
@@ -15,23 +15,23 @@ export const ConnectButton = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const renderWallets = () =>
-    wallets
-      .filter((w) => w.readyState === 'Installed')
-      ?.map((wallet) => (
-        <li key={wallet.adapter.name}>
-          <button
-            onClick={async () => {
-              setIsOpen(false);
-              select(wallet.adapter.name);
-            }}
-            className="flex w-full h-10 items-center gap-2 px-4 border border-gray4 hover:border-green3 hover:text-green3 rounded-sm"
-          >
-            <WalletIcon src={wallet.adapter.icon} name={wallet.adapter.name} />
-            <span>{wallet.adapter.name}</span>
-          </button>
-        </li>
-      ));
+  const installedWallets = wallets.filter((w) => w.readyState === 'Installed');
+
+  const renderWallets = (walletList: Wallet[]) =>
+    walletList.map((wallet) => (
+      <li key={wallet.adapter.name}>
+        <button
+          onClick={async () => {
+            setIsOpen(false);
+            select(wallet.adapter.name);
+          }}
+          className="flex w-full h-10 items-center gap-2 px-4 border border-gray4 hover:border-green3 hover:text-green3 rounded-sm"
+        >
+          <WalletIcon src={wallet.adapter.icon} name={wallet.adapter.name} />
+          <span>{wallet.adapter.name}</span>
+        </button>
+      </li>
+    ));
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -47,7 +47,18 @@ export const ConnectButton = () => {
         <DialogHeader>
           <DialogTitle>Select Wallet</DialogTitle>
         </DialogHeader>
-        <ul className="flex flex-col w-full gap-2 p-6">{renderWallets()}</ul>
+        <div className="w-full p-6">
+          {installedWallets.length ? (
+            <ul className="flex flex-col gap-2">
+              {renderWallets(installedWallets)}
+            </ul>
+          ) : (
+            <p>
+              No wallets detected. Please install a supported wallet extension
+              (e.g., Phantom, Solflare) to continue.
+            </p>
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
