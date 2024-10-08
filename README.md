@@ -3,7 +3,7 @@
 This repo is a result of completing a programming assignment for Step.finance by [@calija](https://github.com/calija).
 It features a staking page for Step/xStep, trying to mimic basic features from the actual Step Finance v2 page.
 
-For convenience, the app is also hosted on Vercel at [https://my-solana-dapp.vercel.app](#) 
+For convenience, the app is also hosted on Vercel at [StepStakingDapp](https://my-solana-dapp.vercel.app) 
 (please be aware that the dApp will not be recognized by your wallet).
 
 ## Technologies Used
