@@ -23,13 +23,13 @@ To run this project locally, follow these steps:
 1. Clone the repository:
 
 ```bash
-   git clone https://github.com/calija/my-solana-dapp
+   git clone https://github.com/calija/stepStakingDapp.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-   cd my-solana-dapp
+   cd stepStakingDapp
 ```
 
 3. Install dependencies:
@@ -49,7 +49,8 @@ To run this project locally, follow these steps:
 ```bash
    NEXT_RPC_URL=https://mainnet.helius-rpc.com/?api-key=<YOUR-API-KEY>
 ```
-Replace <YOUR-API-KEY> with your actual API key.
+
+Replace <YOUR-API-KEY> with the actual API key provided by [Helius RPC](https://www.helius.dev/). It is required to create an account and obtain a key from Helius, as the app specifically uses their RPC service
 
 6. Run the development server:
 
